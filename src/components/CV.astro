@@ -1,0 +1,116 @@
+---
+import Section from './Section.astro';
+import { education, experience, activities, certifications } from '../data/site';
+
+type Row = {
+  logo: string;
+  title: string;
+  subtitle?: string;
+  meta?: string;
+  period: string;
+  location?: string;
+  bullets?: string[];
+};
+
+const educationRows: Row[] = education.map((e) => ({
+  logo: e.logo,
+  title: e.institution,
+  subtitle: e.degree,
+  meta: e.grade,
+  period: e.period,
+  location: e.location,
+}));
+
+const experienceRows: Row[] = experience.map((e) => ({
+  logo: e.logo,
+  title: e.organization,
+  subtitle: e.role,
+  period: e.period,
+  location: e.location,
+  bullets: e.bullets,
+}));
+
+const activityRows: Row[] = activities.map((a) => ({
+  logo: a.logo,
+  title: a.organization,
+  subtitle: a.role,
+  period: a.period,
+  location: a.location,
+  bullets: a.bullets,
+}));
+
+const groups: Array<{ heading: string; rows: Row[] }> = [
+  { heading: 'Education', rows: educationRows },
+  { heading: 'Experience', rows: experienceRows },
+  { heading: 'Activities', rows: activityRows },
+];
+---
+
+<Section id="cv" label="CV" number="04">
+  <div class="space-y-12">
+    {groups.map((group) => (
+      <div>
+        <h3 class="font-mono text-xs font-semibold uppercase tracking-widest text-[color:var(--color-accent)]">
+          {group.heading}
+        </h3>
+        <ul class="mt-4 divide-y divide-[color:var(--color-border)]/40">
+          {group.rows.map((row) => (
+            <li class="grid grid-cols-[56px_1fr] gap-4 py-5 sm:grid-cols-[56px_1fr_auto] sm:gap-6">
+              <div class="flex h-14 w-14 items-center justify-center overflow-hidden rounded-md border border-[color:var(--color-border)] bg-white p-2">
+                <img
+                  src={row.logo}
+                  alt={`${row.title} logo`}
+                  loading="lazy"
+                  decoding="async"
+                  width="48"
+                  height="48"
+                  class="h-full w-full object-contain"
+                />
+              </div>
+
+              <div class="min-w-0">
+                <div class="font-semibold text-[color:var(--color-text-bright)]">{row.title}</div>
+                {row.subtitle && (
+                  <div class="text-sm text-[color:var(--color-text)]">
+                    {row.subtitle}
+                    {row.meta && (
+                      <span class="text-[color:var(--color-text)]/60"> · {row.meta}</span>
+                    )}
+                  </div>
+                )}
+                <div class="mt-1 font-mono text-xs uppercase tracking-wider text-[color:var(--color-text)]/70 sm:hidden">
+                  <span>{row.period}</span>
+                  {row.location && <span> · {row.location}</span>}
+                </div>
+                {row.bullets && row.bullets.length > 0 && (
+                  <ul class="mt-2 list-disc space-y-1 pl-5 text-sm text-[color:var(--color-text)] marker:text-[color:var(--color-accent)]/60">
+                    {row.bullets.map((b) => <li>{b}</li>)}
+                  </ul>
+                )}
+              </div>
+
+              <div class="hidden font-mono text-xs uppercase tracking-wider text-[color:var(--color-text)]/70 sm:block sm:whitespace-nowrap sm:text-right">
+                <div>{row.period}</div>
+                {row.location && <div>{row.location}</div>}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+
+    <div>
+      <h3 class="font-mono text-xs font-semibold uppercase tracking-widest text-[color:var(--color-accent)]">
+        Certifications
+      </h3>
+      <ul class="mt-4 space-y-1 text-sm text-[color:var(--color-text)]">
+        {certifications.map((c) => (
+          <li>
+            <span class="text-[color:var(--color-text-bright)]">{c.title}</span>
+            <span class="text-[color:var(--color-text)]/70"> — {c.issuer}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</Section>

@@ -1,0 +1,54 @@
+---
+import SocialLinks from './SocialLinks.astro';
+import { profile, navItems, heroStatement } from '../data/site';
+---
+
+<section
+  id="hero"
+  class="relative flex min-h-screen flex-col justify-center px-6 py-16 md:px-12 lg:px-24"
+>
+  <div class="mx-auto w-full max-w-4xl">
+    <p class="font-mono text-xs uppercase tracking-[0.25em] text-[color:var(--color-accent)] sm:text-sm">
+      {profile.identity}
+    </p>
+
+    <h1 class="mt-6 text-5xl font-bold tracking-tight text-[color:var(--color-text-bright)] sm:text-6xl md:text-7xl">
+      {profile.name}
+    </h1>
+
+    <p class="mt-8 max-w-2xl text-xl font-light leading-snug text-[color:var(--color-text-soft)] sm:text-2xl md:text-3xl">
+      {heroStatement}
+    </p>
+
+    <nav class="mt-12" aria-label="Primary">
+      <ul class="flex flex-wrap gap-x-8 gap-y-3">
+        {navItems.map((item) => (
+          <li>
+            <a
+              href={`#${item.id}`}
+              class="group flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-[color:var(--color-text-soft)] transition-colors hover:text-[color:var(--color-accent)]"
+            >
+              <span class="h-px w-6 bg-[color:var(--color-text)]/50 transition-all group-hover:w-10 group-hover:bg-[color:var(--color-accent)]"></span>
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="mt-10">
+      <SocialLinks size="md" showEmail={true} />
+    </div>
+  </div>
+
+  <a
+    href="#about"
+    aria-label="Scroll to About section"
+    class="absolute bottom-8 left-1/2 hidden -translate-x-1/2 text-[color:var(--color-text)]/60 hover:text-[color:var(--color-accent)] transition-colors sm:block"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+      <path d="M12 5v14" />
+      <path d="m19 12-7 7-7-7" />
+    </svg>
+  </a>
+</section>

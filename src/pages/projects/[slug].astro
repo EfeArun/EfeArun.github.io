@@ -1,0 +1,87 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { profile, projects, type Project } from '../../data/site';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const pageTitle = `${project.title} — ${profile.name}`;
+const description = project.description;
+---
+
+<Layout title={pageTitle} description={description}>
+  <main class="mx-auto max-w-3xl px-6 py-16 md:px-12 lg:px-0">
+    <a
+      href={`${base}#projects`}
+      class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[color:var(--color-text)]/80 transition-colors hover:text-[color:var(--color-accent)]"
+    >
+      <span aria-hidden="true">←</span> Back
+    </a>
+
+    <header class="mt-10">
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between sm:gap-8">
+        <h1 class="text-3xl font-semibold tracking-tight text-[color:var(--color-text-bright)] sm:text-4xl">
+          {project.title}
+        </h1>
+        <div class="shrink-0 text-left sm:text-right">
+          <div class="font-mono text-2xl font-semibold tracking-tight text-[color:var(--color-accent)] sm:text-3xl">
+            {project.metric}
+          </div>
+          {project.metricLabel && (
+            <div class="mt-0.5 text-[11px] uppercase tracking-wider text-[color:var(--color-text)]/70">
+              {project.metricLabel}
+            </div>
+          )}
+        </div>
+      </div>
+
+      <ul class="mt-5 flex flex-wrap gap-1.5" aria-label="Technologies used">
+        {project.stack.map((tech) => (
+          <li>
+            <span class="inline-flex items-center rounded-full bg-[color:var(--color-accent)]/10 px-2.5 py-0.5 font-mono text-[11px] font-medium leading-5 text-[color:var(--color-accent)]">
+              {tech}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </header>
+
+    <figure class="mt-10 overflow-hidden rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-bg)]">
+      <img
+        src={project.image}
+        alt={project.imageAlt}
+        loading="eager"
+        decoding="async"
+        width="800"
+        height="500"
+        class="aspect-[8/5] w-full object-cover"
+      />
+    </figure>
+
+    <section class="mt-12 space-y-4 text-[color:var(--color-text)]">
+      <p class="text-lg text-[color:var(--color-text-soft)]">{project.description}</p>
+      <p class="text-sm text-[color:var(--color-text)]/70 italic">
+        Detailed write-up coming soon.
+      </p>
+    </section>
+
+    <footer class="mt-16 mb-12 border-t border-[color:var(--color-border)] pt-8">
+      <a
+        href={`${base}#projects`}
+        class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[color:var(--color-text)]/80 transition-colors hover:text-[color:var(--color-accent)]"
+      >
+        <span aria-hidden="true">←</span> Back to all projects
+      </a>
+    </footer>
+  </main>
+</Layout>

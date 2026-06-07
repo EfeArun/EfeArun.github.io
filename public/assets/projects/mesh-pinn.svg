@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#1f2a3d"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <g stroke="#5eead4" stroke-width="1.2" fill="none" opacity="0.55">
+    <path d="M120 120 L260 90 L380 160 L240 240 Z"/>
+    <path d="M260 90 L380 160 L480 100"/>
+    <path d="M380 160 L520 220 L480 100"/>
+    <path d="M520 220 L640 170 L700 280"/>
+    <path d="M640 170 L480 100"/>
+    <path d="M240 240 L380 160 L420 320 L260 360 Z"/>
+    <path d="M420 320 L520 220 L600 360 L520 420 Z"/>
+    <path d="M600 360 L700 280 L720 420"/>
+    <path d="M260 360 L420 320 L520 420 L380 460 Z"/>
+    <path d="M520 420 L720 420"/>
+    <path d="M380 460 L520 420"/>
+    <path d="M120 120 L240 240 L260 360 L120 320 Z"/>
+    <path d="M120 320 L260 360 L380 460 L160 460 Z"/>
+  </g>
+  <g fill="#5eead4">
+    <circle cx="120" cy="120" r="4"/>
+    <circle cx="260" cy="90" r="4"/>
+    <circle cx="380" cy="160" r="4"/>
+    <circle cx="240" cy="240" r="4"/>
+    <circle cx="480" cy="100" r="4"/>
+    <circle cx="520" cy="220" r="4"/>
+    <circle cx="640" cy="170" r="4"/>
+    <circle cx="700" cy="280" r="4"/>
+    <circle cx="260" cy="360" r="4"/>
+    <circle cx="420" cy="320" r="4"/>
+    <circle cx="600" cy="360" r="4"/>
+    <circle cx="520" cy="420" r="4"/>
+    <circle cx="720" cy="420" r="4"/>
+    <circle cx="380" cy="460" r="4"/>
+    <circle cx="160" cy="460" r="4"/>
+    <circle cx="120" cy="320" r="4"/>
+  </g>
+  <text x="40" y="470" font-family="ui-monospace, monospace" font-size="14" fill="#5eead4" opacity="0.6">MeshGNN · PINN</text>
+</svg>

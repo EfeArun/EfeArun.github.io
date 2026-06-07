@@ -1,0 +1,24 @@
+---
+interface Props {
+  id: string;
+  label: string;
+  number?: string;
+}
+
+const { id, label, number } = Astro.props;
+---
+
+<section id={id} aria-label={label} class="scroll-mt-24 py-20 sm:py-24">
+  <div class="mb-10 flex items-center gap-4">
+    {number && (
+      <span class="font-mono text-sm font-medium text-[color:var(--color-accent)]">
+        {number}.
+      </span>
+    )}
+    <h2 class="text-xl font-semibold tracking-tight text-[color:var(--color-text-bright)] sm:text-2xl">
+      {label}
+    </h2>
+    <span class="h-px flex-1 bg-[color:var(--color-border)]" aria-hidden="true"></span>
+  </div>
+  <slot />
+</section>
