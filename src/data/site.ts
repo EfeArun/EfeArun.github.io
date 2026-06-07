@@ -232,7 +232,7 @@ export const activities: Activity[] = [
       'Led a team of 10 organizing courses and seminars for 100+ members.',
       'Secured sponsorships and mentored student teams at international competitions.',
     ],
-    logo: '/assets/logos/bilkent.png',
+    logo: '/assets/logos/mes.png',
   },
 ];
 
